@@ -1,4 +1,3 @@
-# may-2026-tracker
 
 html_content = '''<!DOCTYPE html>
 <html lang="en">
@@ -14,6 +13,7 @@ html_content = '''<!DOCTYPE html>
             --neon-purple: #b829dd;
             --neon-green: #00ff88;
             --neon-orange: #ff6b35;
+            --neon-red: #ff4444;
             --dark-bg: #0a0a1a;
             --card-bg: rgba(20, 20, 45, 0.85);
             --glass: rgba(255, 255, 255, 0.05);
@@ -33,7 +33,6 @@ html_content = '''<!DOCTYPE html>
             overflow-x: hidden;
         }
 
-        /* Animated Background */
         .bg-animation {
             position: fixed;
             top: 0;
@@ -165,7 +164,6 @@ html_content = '''<!DOCTYPE html>
             background: linear-gradient(90deg, var(--neon-blue), transparent);
         }
 
-        /* Calendar */
         .calendar-grid {
             display: grid;
             grid-template-columns: repeat(7, 1fr);
@@ -235,7 +233,6 @@ html_content = '''<!DOCTYPE html>
             pointer-events: none;
         }
 
-        /* Task Items */
         .task-item {
             display: flex;
             align-items: center;
@@ -261,6 +258,15 @@ html_content = '''<!DOCTYPE html>
 
         .task-item.completed .task-icon {
             color: var(--neon-green);
+        }
+
+        .task-item.no-points {
+            cursor: default;
+        }
+
+        .task-item.no-points:hover {
+            background: var(--glass);
+            border-color: rgba(255, 255, 255, 0.05);
         }
 
         .task-left {
@@ -293,7 +299,10 @@ html_content = '''<!DOCTYPE html>
             font-size: 0.9rem;
         }
 
-        /* Namaz Section */
+        .task-points.zero {
+            color: #666;
+        }
+
         .namaz-grid {
             display: grid;
             grid-template-columns: repeat(5, 1fr);
@@ -313,6 +322,7 @@ html_content = '''<!DOCTYPE html>
             cursor: pointer;
             transition: all 0.3s ease;
             text-align: center;
+            position: relative;
         }
 
         .namaz-btn:hover {
@@ -330,6 +340,17 @@ html_content = '''<!DOCTYPE html>
             border-color: var(--neon-orange);
             background: rgba(255, 107, 53, 0.15);
             color: var(--neon-orange);
+        }
+
+        .namaz-points {
+            position: absolute;
+            bottom: -18px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.7rem;
+            color: var(--neon-orange);
+            font-weight: 700;
+            white-space: nowrap;
         }
 
         .qaza-toggle {
@@ -356,7 +377,6 @@ html_content = '''<!DOCTYPE html>
             cursor: pointer;
         }
 
-        /* Slider */
         .slider-container {
             margin-top: 15px;
         }
@@ -396,15 +416,20 @@ html_content = '''<!DOCTYPE html>
             font-size: 0.9rem;
         }
 
-        /* Finance */
         .finance-input {
             display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 12px;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 15px;
             padding: 12px;
             background: var(--glass);
             border-radius: 12px;
+        }
+
+        .finance-input .row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
         .finance-input label {
@@ -413,7 +438,7 @@ html_content = '''<!DOCTYPE html>
             font-size: 0.9rem;
         }
 
-        .finance-input input {
+        .finance-input input[type="number"] {
             flex: 1;
             background: transparent;
             border: 1px solid rgba(255, 255, 255, 0.1);
@@ -422,6 +447,18 @@ html_content = '''<!DOCTYPE html>
             color: #e0e0ff;
             font-family: 'Rajdhani', sans-serif;
             font-size: 1rem;
+            outline: none;
+        }
+
+        .finance-input input[type="text"] {
+            width: 100%;
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 8px 12px;
+            color: #e0e0ff;
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 0.9rem;
             outline: none;
         }
 
@@ -437,7 +474,6 @@ html_content = '''<!DOCTYPE html>
             text-align: right;
         }
 
-        /* Stats */
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -499,7 +535,6 @@ html_content = '''<!DOCTYPE html>
             min-width: 50px;
         }
 
-        /* Mission Toggle */
         .mission-toggle {
             display: flex;
             align-items: center;
@@ -539,7 +574,28 @@ html_content = '''<!DOCTYPE html>
             color: var(--neon-green);
         }
 
-        /* Date Display */
+        .mission-text {
+            width: 100%;
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 10px 12px;
+            color: #e0e0ff;
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 0.95rem;
+            margin-bottom: 10px;
+            outline: none;
+        }
+
+        .mission-text:focus {
+            border-color: var(--neon-blue);
+        }
+
+        .mission-text:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+
         .date-display {
             font-family: 'Orbitron', sans-serif;
             font-size: 1.5rem;
@@ -549,7 +605,6 @@ html_content = '''<!DOCTYPE html>
             text-shadow: 0 0 20px rgba(255, 0, 228, 0.3);
         }
 
-        /* OTP Date Notice */
         .otp-notice {
             background: rgba(184, 41, 221, 0.1);
             border: 1px solid var(--neon-purple);
@@ -567,7 +622,6 @@ html_content = '''<!DOCTYPE html>
             color: var(--neon-green);
         }
 
-        /* TikTok Notice */
         .tiktok-notice {
             background: rgba(0, 240, 255, 0.1);
             border: 1px solid var(--neon-blue);
@@ -585,7 +639,6 @@ html_content = '''<!DOCTYPE html>
             color: var(--neon-green);
         }
 
-        /* Save Button */
         .save-btn {
             width: 100%;
             padding: 16px;
@@ -613,14 +666,23 @@ html_content = '''<!DOCTYPE html>
             transform: translateY(0);
         }
 
-        /* Section Divider */
         .section-divider {
             height: 1px;
             background: linear-gradient(90deg, transparent, rgba(0, 240, 255, 0.3), transparent);
             margin: 25px 0;
         }
 
-        /* Responsive */
+        .opening-balance {
+            background: rgba(0, 255, 136, 0.1);
+            border: 1px solid var(--neon-green);
+            border-radius: 10px;
+            padding: 10px;
+            margin-bottom: 15px;
+            font-size: 0.85rem;
+            color: var(--neon-green);
+            text-align: center;
+        }
+
         @media (max-width: 768px) {
             header h1 { font-size: 2rem; }
             .namaz-grid { grid-template-columns: repeat(3, 1fr); }
@@ -639,9 +701,7 @@ html_content = '''<!DOCTYPE html>
         </header>
 
         <div class="main-grid">
-            <!-- Left Column -->
             <div class="left-column">
-                <!-- Calendar -->
                 <div class="card">
                     <div class="card-title">Calendar</div>
                     <div class="calendar-grid" id="calendar">
@@ -655,7 +715,6 @@ html_content = '''<!DOCTYPE html>
                     </div>
                 </div>
 
-                <!-- Monthly Stats -->
                 <div class="card" style="margin-top: 20px;">
                     <div class="card-title">May 2026 Overview</div>
                     <div class="stats-grid">
@@ -668,16 +727,20 @@ html_content = '''<!DOCTYPE html>
                             <div class="stat-label">Namaz Points</div>
                         </div>
                         <div class="stat-box">
+                            <div class="stat-value" id="totalQaza">0</div>
+                            <div class="stat-label">Qaza Done</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-value" id="totalQazaPoints">0</div>
+                            <div class="stat-label">Qaza Points</div>
+                        </div>
+                        <div class="stat-box">
                             <div class="stat-value" id="totalSpiritual">0</div>
                             <div class="stat-label">Spiritual</div>
                         </div>
                         <div class="stat-box">
                             <div class="stat-value" id="totalWork">0</div>
                             <div class="stat-label">Work Tasks</div>
-                        </div>
-                        <div class="stat-box">
-                            <div class="stat-value" id="totalQaza">0</div>
-                            <div class="stat-label">Qaza Done</div>
                         </div>
                         <div class="stat-box">
                             <div class="stat-value" id="totalMAvoided">0</div>
@@ -691,10 +754,10 @@ html_content = '''<!DOCTYPE html>
                             <div class="stat-value" id="papaBalance">₨0</div>
                             <div class="stat-label">Papa Balance</div>
                         </div>
-                    </div>
-                    <div class="stat-box" style="margin-top: 15px;">
-                        <div class="stat-value" id="originalBalance">₨0</div>
-                        <div class="stat-label">Original Account</div>
+                        <div class="stat-box">
+                            <div class="stat-value" id="originalBalance">₨0</div>
+                            <div class="stat-label">Original Balance</div>
+                        </div>
                     </div>
                     <div class="efficiency-bar">
                         <div class="efficiency-fill" id="avgEfficiency" style="width: 0%">0%</div>
@@ -702,7 +765,6 @@ html_content = '''<!DOCTYPE html>
                 </div>
             </div>
 
-            <!-- Right Column -->
             <div class="right-column">
                 <div class="card">
                     <div class="date-display" id="selectedDate">1 May 2026</div>
@@ -755,14 +817,14 @@ html_content = '''<!DOCTYPE html>
 
                     <div style="margin-bottom: 10px; font-size: 0.9rem; color: #8899aa;">5 Namaz (10 pts if all Ada)</div>
                     <div class="namaz-grid" id="namazGrid">
-                        <button class="namaz-btn" data-namaz="fajr" onclick="toggleNamaz(this)">Fajr</button>
-                        <button class="namaz-btn" data-namaz="zuhr" onclick="toggleNamaz(this)">Zuhr</button>
-                        <button class="namaz-btn" data-namaz="asr" onclick="toggleNamaz(this)">Asr</button>
-                        <button class="namaz-btn" data-namaz="maghrib" onclick="toggleNamaz(this)">Maghrib</button>
-                        <button class="namaz-btn" data-namaz="isha" onclick="toggleNamaz(this)">Isha</button>
+                        <button class="namaz-btn" data-namaz="fajr" onclick="toggleNamaz(this)">Fajr<span class="namaz-points" id="fajrPoints"></span></button>
+                        <button class="namaz-btn" data-namaz="zuhr" onclick="toggleNamaz(this)">Zuhr<span class="namaz-points" id="zuhrPoints"></span></button>
+                        <button class="namaz-btn" data-namaz="asr" onclick="toggleNamaz(this)">Asr<span class="namaz-points" id="asrPoints"></span></button>
+                        <button class="namaz-btn" data-namaz="maghrib" onclick="toggleNamaz(this)">Maghrib<span class="namaz-points" id="maghribPoints"></span></button>
+                        <button class="namaz-btn" data-namaz="isha" onclick="toggleNamaz(this)">Isha<span class="namaz-points" id="ishaPoints"></span></button>
                     </div>
 
-                    <div class="task-item" data-task="tahajjud" data-points="5" onclick="toggleTask(this)" style="margin-top: 15px;">
+                    <div class="task-item" data-task="tahajjud" data-points="5" onclick="toggleTask(this)" style="margin-top: 25px;">
                         <div class="task-left">
                             <div class="task-icon">🌙</div>
                             <div class="task-info">
@@ -784,15 +846,16 @@ html_content = '''<!DOCTYPE html>
                         <div class="task-points">+5</div>
                     </div>
 
-                    <div class="task-item" data-task="quran" data-points="3" onclick="toggleTask(this)">
+                    <!-- Quran - 0 points, just for tracking -->
+                    <div class="task-item no-points" data-task="quran" data-points="0" onclick="toggleTask(this)">
                         <div class="task-left">
                             <div class="task-icon">📖</div>
                             <div class="task-info">
                                 <h4>Quran - 1 Ruku</h4>
-                                <span>+3 points</span>
+                                <span>Track only (0 points)</span>
                             </div>
                         </div>
-                        <div class="task-points">+3</div>
+                        <div class="task-points zero">0</div>
                     </div>
 
                     <div class="otp-notice" id="otpNotice">
@@ -826,6 +889,9 @@ html_content = '''<!DOCTYPE html>
                     <!-- Work Section -->
                     <div class="card-title">Work</div>
 
+                    <div style="margin-bottom: 10px; font-size: 0.85rem; color: #8899aa;">Write mission first, then turn ON</div>
+                    <input type="text" class="mission-text" id="missionText" placeholder="Write your mission here..." onchange="saveMissionText()">
+
                     <div class="mission-toggle">
                         <input type="checkbox" id="missionToggle" onchange="toggleMission()">
                         <label for="missionToggle">Mission ON/OFF</label>
@@ -836,7 +902,7 @@ html_content = '''<!DOCTYPE html>
                         <div class="task-left">
                             <div class="task-icon">🎯</div>
                             <div class="task-info">
-                                <h4>Mission</h4>
+                                <h4>Mission Completed</h4>
                                 <span>+3 points (Only when ON)</span>
                             </div>
                         </div>
@@ -907,22 +973,35 @@ html_content = '''<!DOCTYPE html>
                     <!-- Finance Section -->
                     <div class="card-title">Finance</div>
 
-                    <div class="finance-input">
-                        <label>MMM Account</label>
-                        <input type="number" id="mmmInput" placeholder="Enter amount" onchange="updateFinance('mmm', this.value)">
-                        <div class="balance" id="mmmDisplay">₨0</div>
+                    <div class="opening-balance">
+                        Opening Balances: MMM = -₨600,000 | Original = ₨0 | Papa = ₨0
                     </div>
 
                     <div class="finance-input">
-                        <label>Papa Account</label>
-                        <input type="number" id="papaInput" placeholder="Enter amount" onchange="updateFinance('papa', this.value)">
-                        <div class="balance" id="papaDisplay">₨0</div>
+                        <div class="row">
+                            <label>MMM Account</label>
+                            <input type="number" id="mmmInput" placeholder="Enter amount" onchange="updateFinance('mmm', this.value)">
+                            <div class="balance" id="mmmDisplay">₨-600000</div>
+                        </div>
+                        <input type="text" id="mmmDesc" placeholder="Description (e.g., Salary, Expense, etc.)" onchange="saveFinanceDesc('mmm', this.value)">
                     </div>
 
                     <div class="finance-input">
-                        <label>Original Account</label>
-                        <input type="number" id="originalInput" placeholder="Enter amount" onchange="updateFinance('original', this.value)">
-                        <div class="balance" id="originalDisplay">₨0</div>
+                        <div class="row">
+                            <label>Papa Account</label>
+                            <input type="number" id="papaInput" placeholder="Enter amount" onchange="updateFinance('papa', this.value)">
+                            <div class="balance" id="papaDisplay">₨0</div>
+                        </div>
+                        <input type="text" id="papaDesc" placeholder="Description (e.g., Gift, Bill, etc.)" onchange="saveFinanceDesc('papa', this.value)">
+                    </div>
+
+                    <div class="finance-input">
+                        <div class="row">
+                            <label>Original Account</label>
+                            <input type="number" id="originalInput" placeholder="Enter amount" onchange="updateFinance('original', this.value)">
+                            <div class="balance" id="originalDisplay">₨0</div>
+                        </div>
+                        <input type="text" id="originalDesc" placeholder="Description (e.g., Investment, etc.)" onchange="saveFinanceDesc('original', this.value)">
                     </div>
 
                     <button class="save-btn" onclick="saveDay()">Save Day Data</button>
@@ -933,10 +1012,15 @@ html_content = '''<!DOCTYPE html>
 
     <script>
         // ==================== DATA STORAGE ====================
-        const mayData = JSON.parse(localStorage.getItem('may2026_tracker')) || {};
-        let currentDate = new Date(2026, 4, 1); // May 1, 2026
+        const mayData = JSON.parse(localStorage.getItem('may2026_tracker_v2')) || {};
+        let currentDate = new Date(2026, 4, 1);
         let qazaMode = false;
         let missionOn = false;
+
+        // Opening balances
+        const OPENING_MMM = -600000;
+        const OPENING_ORIGINAL = 0;
+        const OPENING_PAPA = 0;
 
         // ==================== STAR BACKGROUND ====================
         function createStars() {
@@ -957,16 +1041,14 @@ html_content = '''<!DOCTYPE html>
         function generateCalendar() {
             const calendar = document.getElementById('calendar');
             const daysInMonth = 31;
-            const firstDay = new Date(2026, 4, 1).getDay(); // Friday = 5
+            const firstDay = new Date(2026, 4, 1).getDay();
             
-            // Empty cells before 1st
             for (let i = 0; i < firstDay; i++) {
                 const empty = document.createElement('div');
                 empty.className = 'calendar-day empty';
                 calendar.appendChild(empty);
             }
 
-            // Days
             for (let day = 1; day <= daysInMonth; day++) {
                 const dateStr = `2026-05-${String(day).padStart(2, '0')}`;
                 const dayDiv = document.createElement('div');
@@ -976,12 +1058,10 @@ html_content = '''<!DOCTYPE html>
                 const dateObj = new Date(2026, 4, day);
                 const dayOfWeek = dateObj.getDay();
                 
-                // Jummah (Friday)
                 if (dayOfWeek === 5) {
                     dayDiv.classList.add('jummah');
                 }
 
-                // Check if data exists
                 if (mayData[dateStr]) {
                     const eff = calculateEfficiency(mayData[dateStr]);
                     dayDiv.innerHTML = `<div class="day-num">${day}</div><div class="day-eff">${eff}%</div>`;
@@ -998,17 +1078,12 @@ html_content = '''<!DOCTYPE html>
             currentDate = new Date(2026, 4, day);
             const dateStr = formatDate(currentDate);
             
-            // Update active state
             document.querySelectorAll('.calendar-day').forEach(d => d.classList.remove('active'));
             document.querySelector(`[data-date="${dateStr}"]`)?.classList.add('active');
             
-            // Update display
             document.getElementById('selectedDate').textContent = `${day} May 2026`;
             
-            // Load data
             loadDayData(dateStr);
-            
-            // Check date restrictions
             checkDateRestrictions(day);
         }
 
@@ -1018,7 +1093,6 @@ html_content = '''<!DOCTYPE html>
             const tiktokNotice = document.getElementById('tiktokNotice');
             const tiktokTask = document.getElementById('tiktokTask');
 
-            // OTP starts from 12th May
             if (day >= 12) {
                 otpNotice.textContent = '✅ OTP is Active (From 12 May)';
                 otpNotice.classList.add('active');
@@ -1031,7 +1105,6 @@ html_content = '''<!DOCTYPE html>
                 otpTask.style.pointerEvents = 'none';
             }
 
-            // TikTok starts from 12th May
             if (day >= 12) {
                 tiktokNotice.textContent = '✅ TikTok Post is Active (From 12 May)';
                 tiktokNotice.classList.add('active');
@@ -1053,17 +1126,14 @@ html_content = '''<!DOCTYPE html>
             if (!mayData[dateStr]) mayData[dateStr] = {};
             if (!mayData[dateStr].tasks) mayData[dateStr].tasks = {};
             
-            // Toggle
             mayData[dateStr].tasks[task] = !mayData[dateStr].tasks[task];
             
-            // Update UI
             if (mayData[dateStr].tasks[task]) {
                 element.classList.add('completed');
             } else {
                 element.classList.remove('completed');
             }
             
-            // Recalculate efficiency
             updateEfficiency(dateStr);
             updateCalendarDay(dateStr);
         }
@@ -1080,42 +1150,52 @@ html_content = '''<!DOCTYPE html>
             if (!mayData[dateStr]) mayData[dateStr] = {};
             if (!mayData[dateStr].namaz) mayData[dateStr].namaz = {};
             
-            // Cycle: none -> ada -> qaza (if enabled) -> none
             const current = mayData[dateStr].namaz[namaz] || 'none';
             
             if (current === 'none') {
                 mayData[dateStr].namaz[namaz] = 'ada';
                 btn.className = 'namaz-btn ada';
+                document.getElementById(namaz + 'Points').textContent = '';
             } else if (current === 'ada' && qazaMode) {
                 mayData[dateStr].namaz[namaz] = 'qaza';
                 btn.className = 'namaz-btn qaza';
+                document.getElementById(namaz + 'Points').textContent = '+2';
             } else {
                 mayData[dateStr].namaz[namaz] = 'none';
                 btn.className = 'namaz-btn';
+                document.getElementById(namaz + 'Points').textContent = '';
             }
             
             updateEfficiency(dateStr);
             updateCalendarDay(dateStr);
         }
 
-        // ==================== MISSION TOGGLE ====================
+        // ==================== MISSION ====================
+        function saveMissionText() {
+            const dateStr = formatDate(currentDate);
+            if (!mayData[dateStr]) mayData[dateStr] = {};
+            mayData[dateStr].missionText = document.getElementById('missionText').value;
+        }
+
         function toggleMission() {
             missionOn = document.getElementById('missionToggle').checked;
             const status = document.getElementById('missionStatus');
             const missionTask = document.getElementById('missionTask');
+            const missionText = document.getElementById('missionText');
             
             if (missionOn) {
                 status.textContent = 'ON';
                 status.classList.add('on');
                 missionTask.style.opacity = '1';
                 missionTask.style.pointerEvents = 'auto';
+                missionText.disabled = false;
             } else {
                 status.textContent = 'OFF';
                 status.classList.remove('on');
                 missionTask.style.opacity = '0.4';
                 missionTask.style.pointerEvents = 'none';
+                missionText.disabled = true;
                 
-                // Reset mission task if turning off
                 const dateStr = formatDate(currentDate);
                 if (mayData[dateStr] && mayData[dateStr].tasks) {
                     mayData[dateStr].tasks.mission = false;
@@ -1124,6 +1204,8 @@ html_content = '''<!DOCTYPE html>
             }
             
             const dateStr = formatDate(currentDate);
+            if (!mayData[dateStr]) mayData[dateStr] = {};
+            mayData[dateStr].missionOn = missionOn;
             updateEfficiency(dateStr);
             updateCalendarDay(dateStr);
         }
@@ -1169,12 +1251,42 @@ html_content = '''<!DOCTYPE html>
             if (account === 'mmm') {
                 mayData[dateStr].finance.original = numValue;
                 document.getElementById('originalInput').value = numValue;
-                document.getElementById('originalDisplay').textContent = '₨' + numValue;
             }
             
-            document.getElementById(account + 'Display').textContent = '₨' + numValue;
-            
+            updateFinanceDisplay();
             updateMonthlyStats();
+        }
+
+        function saveFinanceDesc(account, desc) {
+            const dateStr = formatDate(currentDate);
+            if (!mayData[dateStr]) mayData[dateStr] = {};
+            if (!mayData[dateStr].financeDesc) mayData[dateStr].financeDesc = {};
+            mayData[dateStr].financeDesc[account] = desc;
+        }
+
+        function updateFinanceDisplay() {
+            const dateStr = formatDate(currentDate);
+            const data = mayData[dateStr] || {};
+            const fin = data.finance || {};
+            
+            // Show running balance including opening balance
+            let mmmRunning = OPENING_MMM;
+            let originalRunning = OPENING_ORIGINAL;
+            let papaRunning = OPENING_PAPA;
+            
+            // Calculate running totals up to current date
+            const allDates = Object.keys(mayData).sort();
+            for (const d of allDates) {
+                if (d > dateStr) break;
+                const dayFin = mayData[d]?.finance || {};
+                mmmRunning += (dayFin.mmm || 0);
+                originalRunning += (dayFin.original || 0);
+                papaRunning += (dayFin.papa || 0);
+            }
+            
+            document.getElementById('mmmDisplay').textContent = '₨' + mmmRunning.toLocaleString();
+            document.getElementById('originalDisplay').textContent = '₨' + originalRunning.toLocaleString();
+            document.getElementById('papaDisplay').textContent = '₨' + papaRunning.toLocaleString();
         }
 
         // ==================== EFFICIENCY CALCULATION ====================
@@ -1186,28 +1298,32 @@ html_content = '''<!DOCTYPE html>
             
             const day = currentDate.getDate();
             
-            // Health tasks (always count)
+            // Health tasks
             const healthTasks = ['brush', 'facewash', 'water'];
             healthTasks.forEach(t => {
                 totalPossible += 3;
                 if (dayData.tasks && dayData.tasks[t]) earned += 3;
             });
             
-            // Namaz
+            // Namaz - Ada = 2 points each (max 10 for 5 prayers)
+            // Qaza = 2 points each (BONUS, not replacing Ada)
+            let adaCount = 0;
+            let qazaCount = 0;
             if (dayData.namaz) {
-                let adaCount = 0;
-                let qazaCount = 0;
                 Object.values(dayData.namaz).forEach(status => {
                     if (status === 'ada') adaCount++;
                     if (status === 'qaza') qazaCount++;
                 });
-                
-                totalPossible += 10;
-                if (adaCount === 5) earned += 10;
-                else if (adaCount + qazaCount === 5) earned += 5;
-                else earned += (adaCount * 2);
-            } else {
-                totalPossible += 10;
+            }
+            
+            // Ada points: 2 per prayer (max 10)
+            totalPossible += 10;
+            earned += (adaCount * 2);
+            
+            // Qaza points: 2 per prayer (BONUS - adds to total possible)
+            if (qazaCount > 0) {
+                totalPossible += (qazaCount * 2);
+                earned += (qazaCount * 2);
             }
             
             // Tahajjud
@@ -1218,9 +1334,8 @@ html_content = '''<!DOCTYPE html>
             totalPossible += 5;
             if (dayData.tasks && dayData.tasks.dua) earned += 5;
             
-            // Quran
-            totalPossible += 3;
-            if (dayData.tasks && dayData.tasks.quran) earned += 3;
+            // Quran - 0 points (just tracking)
+            // No points added to totalPossible or earned
             
             // OTP (only from 12th May)
             if (day >= 12) {
@@ -1233,7 +1348,7 @@ html_content = '''<!DOCTYPE html>
             if (dayData.tasks && dayData.tasks.mstatus) earned += 5;
             
             // Mission (only if ON)
-            if (missionOn || (dayData.missionOn)) {
+            if (missionOn || dayData.missionOn) {
                 totalPossible += 3;
                 if (dayData.tasks && dayData.tasks.mission) earned += 3;
             }
@@ -1283,12 +1398,12 @@ html_content = '''<!DOCTYPE html>
             mayData[dateStr].missionOn = missionOn;
             mayData[dateStr].saved = true;
             
-            localStorage.setItem('may2026_tracker', JSON.stringify(mayData));
+            localStorage.setItem('may2026_tracker_v2', JSON.stringify(mayData));
             
             updateMonthlyStats();
             updateCalendarDay(dateStr);
+            updateFinanceDisplay();
             
-            // Show save animation
             const btn = document.querySelector('.save-btn');
             const originalText = btn.textContent;
             btn.textContent = '✓ Saved!';
@@ -1310,6 +1425,7 @@ html_content = '''<!DOCTYPE html>
             document.querySelectorAll('.namaz-btn').forEach(btn => {
                 btn.className = 'namaz-btn';
             });
+            document.querySelectorAll('.namaz-points').forEach(p => p.textContent = '');
             
             // Load tasks
             if (data.tasks) {
@@ -1326,15 +1442,25 @@ html_content = '''<!DOCTYPE html>
                 Object.entries(data.namaz).forEach(([namaz, status]) => {
                     const btn = document.querySelector(`[data-namaz="${namaz}"]`);
                     if (btn) {
-                        if (status === 'ada') btn.className = 'namaz-btn ada';
-                        else if (status === 'qaza') btn.className = 'namaz-btn qaza';
+                        if (status === 'ada') {
+                            btn.className = 'namaz-btn ada';
+                        } else if (status === 'qaza') {
+                            btn.className = 'namaz-btn qaza';
+                            document.getElementById(namaz + 'Points').textContent = '+2';
+                        }
                     }
                 });
             }
             
+            // Load mission text
+            document.getElementById('missionText').value = data.missionText || '';
+            
             // Load mission state
             if (data.missionOn !== undefined) {
                 document.getElementById('missionToggle').checked = data.missionOn;
+                toggleMission();
+            } else {
+                document.getElementById('missionToggle').checked = false;
                 toggleMission();
             }
             
@@ -1348,30 +1474,36 @@ html_content = '''<!DOCTYPE html>
                 document.getElementById('mobilePoints').textContent = '+3';
             }
             
-            // Load finance
+            // Load finance inputs
             if (data.finance) {
                 document.getElementById('mmmInput').value = data.finance.mmm || '';
-                document.getElementById('mmmDisplay').textContent = '₨' + (data.finance.mmm || 0);
                 document.getElementById('papaInput').value = data.finance.papa || '';
-                document.getElementById('papaDisplay').textContent = '₨' + (data.finance.papa || 0);
                 document.getElementById('originalInput').value = data.finance.original || '';
-                document.getElementById('originalDisplay').textContent = '₨' + (data.finance.original || 0);
             } else {
                 document.getElementById('mmmInput').value = '';
-                document.getElementById('mmmDisplay').textContent = '₨0';
                 document.getElementById('papaInput').value = '';
-                document.getElementById('papaDisplay').textContent = '₨0';
                 document.getElementById('originalInput').value = '';
-                document.getElementById('originalDisplay').textContent = '₨0';
             }
             
+            // Load finance descriptions
+            if (data.financeDesc) {
+                document.getElementById('mmmDesc').value = data.financeDesc.mmm || '';
+                document.getElementById('papaDesc').value = data.financeDesc.papa || '';
+                document.getElementById('originalDesc').value = data.financeDesc.original || '';
+            } else {
+                document.getElementById('mmmDesc').value = '';
+                document.getElementById('papaDesc').value = '';
+                document.getElementById('originalDesc').value = '';
+            }
+            
+            updateFinanceDisplay();
             checkDateRestrictions(currentDate.getDate());
         }
 
         // ==================== MONTHLY STATS ====================
         function updateMonthlyStats() {
-            let health = 0, namaz = 0, spiritual = 0, work = 0, qaza = 0, mAvoided = 0;
-            let mmmTotal = 0, papaTotal = 0, originalTotal = 0;
+            let health = 0, namaz = 0, qazaCount = 0, qazaPoints = 0, spiritual = 0, work = 0, mAvoided = 0;
+            let mmmTotal = OPENING_MMM, papaTotal = OPENING_PAPA, originalTotal = OPENING_ORIGINAL;
             let totalEff = 0, effCount = 0;
             
             Object.entries(mayData).forEach(([date, data]) => {
@@ -1386,22 +1518,20 @@ html_content = '''<!DOCTYPE html>
                 
                 // Namaz
                 if (data.namaz) {
-                    let adaCount = 0, qazaCount = 0;
+                    let adaCount = 0, dayQaza = 0;
                     Object.values(data.namaz).forEach(status => {
                         if (status === 'ada') adaCount++;
-                        if (status === 'qaza') qazaCount++;
+                        if (status === 'qaza') dayQaza++;
                     });
-                    if (adaCount === 5) namaz += 10;
-                    else if (adaCount + qazaCount === 5) namaz += 5;
-                    else namaz += (adaCount * 2);
-                    qaza += qazaCount;
+                    namaz += (adaCount * 2);
+                    qazaCount += dayQaza;
+                    qazaPoints += (dayQaza * 2);
                 }
                 
                 // Spiritual
                 if (data.tasks) {
                     if (data.tasks.tahajjud) spiritual += 5;
                     if (data.tasks.dua) spiritual += 5;
-                    if (data.tasks.quran) spiritual += 3;
                     if (data.tasks.otp) spiritual += 3;
                     if (data.tasks.mstatus) { spiritual += 5; mAvoided++; }
                 }
@@ -1431,13 +1561,14 @@ html_content = '''<!DOCTYPE html>
             
             document.getElementById('totalHealth').textContent = health;
             document.getElementById('totalNamaz').textContent = namaz;
+            document.getElementById('totalQaza').textContent = qazaCount;
+            document.getElementById('totalQazaPoints').textContent = qazaPoints;
             document.getElementById('totalSpiritual').textContent = spiritual;
             document.getElementById('totalWork').textContent = work;
-            document.getElementById('totalQaza').textContent = qaza;
             document.getElementById('totalMAvoided').textContent = mAvoided;
-            document.getElementById('mmmBalance').textContent = '₨' + mmmTotal;
-            document.getElementById('papaBalance').textContent = '₨' + papaTotal;
-            document.getElementById('originalBalance').textContent = '₨' + originalTotal;
+            document.getElementById('mmmBalance').textContent = '₨' + mmmTotal.toLocaleString();
+            document.getElementById('papaBalance').textContent = '₨' + papaTotal.toLocaleString();
+            document.getElementById('originalBalance').textContent = '₨' + originalTotal.toLocaleString();
             
             const avgEff = effCount > 0 ? Math.round(totalEff / effCount) : 0;
             const effBar = document.getElementById('avgEfficiency');
@@ -1463,9 +1594,8 @@ html_content = '''<!DOCTYPE html>
 </body>
 </html>'''
 
-# Save to output
 with open('/mnt/agents/output/may-2026-tracker.html', 'w', encoding='utf-8') as f:
     f.write(html_content)
 
-print("May 2026 Tracker saved successfully!")
+print("✅ Updated May 2026 Tracker saved!")
 print(f"File size: {len(html_content)} characters")
